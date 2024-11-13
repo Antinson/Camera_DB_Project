@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold mb-4">Dashboard</h1>
+    <input type="hidden" id="username" value="{{ username }}">
+
+    <div id="chart-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-auto">
+        <div class="bg-gray-50 p-4 flex flex-col justify-center items-center">
+            <h2 class="text-xl font-semibold text-center mb-4">{{username | upper}} Camera Storage</h2>
+            <div class="flex justify-center items-center">
+                <canvas id="myPieChart" class="w-full max-w-xs h-auto"></canvas>
+            </div>
+        </div>
+        <div class="bg-gray-50 p-4 flex flex-col justify-center items-center">
+            <h1 class="text-xl font-bold mb-4">Download data</h1>
+            <div class="flex flex-col items-center">
+                <select name="download_format" id="formats" class="block w-full mt-2 p-2 border rounded">
+                    <option value="excel">Excel</option>
+                    <option value="json">Json</option>
+                </select>
+                <button id="download" class="mt-4 p-2 bg-blue-500 text-white rounded">Download</button>
+            </div>
+        </div>
+        <div class="bg-gray-50 p-4">
+            <h1 class="text-xl font-bold mb-4">Summary data</h1>
+            <div id="summary_container"></div>
+        </div>
+        <div class="bg-gray-50 p-4 w-full">
+            <h2 class="text-xl font-semibold text-center mb-4">My Cameras</h2>
+            <div class="mb-4 w-full">
+                <label for="camera_type_filter" class="block text-lg font-semibold">Filter by Camera Type:</label>
+                <select id="camera_type_filter" class="block w-full mt-2 p-2 border rounded">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div class="mb-4 w-full">
+                <label for="status_filter" class="block text-lg font-semibold">Filter by Status:</label>
+                <select id="status_filter" class="block w-full mt-2 p-2 border rounded">
+                    <option value="">All</option>
+                    <option value="Working">Working</option>
+                    <option value="Broken">Broken</option>
+                </select>
+            </div>
+            <div id="camera_table" class="w-full overflow-x-auto"></div>
+            <div id="pagination-controls" class="flex justify-center mt-4 w-full"></div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/user_dashboard.js') }}"></script>
+
+{% endblock %}
