@@ -26,3 +26,44 @@ Solved
 ![Demo](excel.gif)
 
 
+# Setup
+
+
+### .env file
+You will need a .env file with the following
+- FLASK_APP = 'wsgi.py'
+- FLASK_ENV = 'development' # or production
+- SECRET_KEY = '' Generate this
+- SQLALCHEMY_DATABASE_URI = "sqlite:///database_name.db"
+- SUPABASE_DB_URL = '' # your supabase db
+
+Within config, you can change between SQLite and superbase
+
+### Docker build
+
+**Create the docker image**<br>
+docker build -t image-name .
+
+**Then run it**<br>
+docker run image-name
+
+**Note this was built for work and not generalised**<br>
+
+If you need an admin account
+**python create_admin.py**
+
+username = "admin"
+password = "admin"
+
+Note:
+I built this project for my workplace, where I didn't want uncontrolled signups
+
+### Using the project
+
+This project was mainly used to track Cameras with Mac_id's and people reporting 'broken' or 'working' cameras however this could be generalised to any item that has a working/not-working state and has an admin Id
+
+
+
+
+
+
